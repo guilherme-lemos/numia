@@ -1,0 +1,25 @@
+[project]
+name = "numia"
+version = "26.09.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "ofxparse>=0.21",
+    "pandas>=3.0.5",
+    "plotly>=7.0.0",
+    "pyyaml>=6.0.3",
+    "sqlalchemy>=2.0.52",
+    "streamlit>=1.63.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+package = true
+
+[project.scripts]
+numia = "numia.cli:main"
+pytrato = "numia.report:main"
