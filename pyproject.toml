@@ -1,9 +1,13 @@
 [project]
 name = "numia"
-version = "26.09.0"
-description = "Add your description here"
+version = "26.9.0"
+description = "Personal finance tool for parsing bank statement exports (OFX and CSV) and generating spending reports."
 readme = "README.md"
 requires-python = ">=3.14"
+authors = [{ name = "glemos", email = "guilherme@lemos.tec.br" }]
+license = "LicenseRef-Proprietary"
+license-files = ["LICENSE"]
+classifiers = ["Private :: Do Not Upload"]
 dependencies = [
     "ofxparse>=0.21",
     "pandas>=3.0.5",
@@ -20,6 +24,36 @@ build-backend = "hatchling.build"
 [tool.uv]
 package = true
 
+[dependency-groups]
+dev = [
+    "playwright>=1.62.0",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "pytest-mock>=3.15.1",
+    "pytest-playwright>=0.9.0",
+]
+
 [project.scripts]
 numia = "numia.cli:main"
-pytrato = "numia.report:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "unit: isolated, fast, no I/O (default layer, no marker needed in practice)",
+    "integration: real collaborators (parser lib, DB, or multi-module pipeline), no browser",
+    "e2e: drives the running app through a real browser (Playwright)",
+]
+
+[tool.coverage.run]
+source = ["src/numia"]
+branch = true
+omit = [
+    "src/numia/ui/*",
+]
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
+exclude_also = [
+    "if __name__ == .__main__.:",
+]

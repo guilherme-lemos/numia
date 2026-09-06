@@ -8,3 +8,16 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Test/coverage artifacts
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+playwright-report/
+test-results/
+
+# Local data (never committed real financial data — see AGENTS.md)
+*.db
+*.sqlite
+*.sqlite3
